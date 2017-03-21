@@ -1,10 +1,11 @@
 .dev-tools{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     pointer-events: none;
+    z-index: 999;
     .toolbox {
         pointer-events: auto;
         background-color: $black;
@@ -12,8 +13,12 @@
         top: $base-spacing;
         left: $base-spacing;
         @include border-radius($border-radius*2);
+        @include pointer();
         padding: $base-spacing/2;
-        i.fa { color: $white; }
+        i.fa { 
+            color: $white;
+            margin-right: $base-spacing/2;
+        }
         .title {
             display: inline-block;
             margin-bottom: $base-spacing/2;
@@ -76,6 +81,7 @@
                 }
                 label { display: inline-block; }
                 button {
+                    @include button();
                     margin-top: $base-spacing;
                 }
                 .field { margin-top: $base-spacing/2; }
