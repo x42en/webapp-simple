@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 
-@mixin button($color,$font-color: #FFF) {
+@mixin button($color: $blue,$font-color: #FFF) {
   @pointer();
   display: inline-block;
   min-height: $base-spacing;
