@@ -9,28 +9,28 @@ class SocketClient
             else
                 scope.$apply(fn)
 
-            socket = io.connect "#{host}:#{port}#{service}", { reconnectionDelay: 2000, forceNew: true }
-            return {
-                on: (eventName, callback) ->
-                    socket.on eventName, ->
-                        args = arguments
-                        safeApply($rootScope, () ->
+        socket = io.connect "#{host}:#{port}#{service}", { reconnectionDelay: 2000, forceNew: true }
+        return {
+            on: (eventName, callback) ->
+                socket.on eventName, ->
+                    args = arguments
+                    safeApply($rootScope, () ->
+                        callback.apply socket, args
+                    )
+            emit: (eventName, data, callback) ->
+                socket.emit eventName, data, ->
+                    args = arguments
+                    safeApply($rootScope, () ->
+                        if callback
                             callback.apply socket, args
-                        )
-                emit: (eventName, data, callback) ->
-                    socket.emit eventName, data, ->
-                        args = arguments
-                        safeApply($rootScope, () ->
-                            if callback
-                                callback.apply socket, args
-                        )
+                    )
 
-                disconnect: () ->
-                    disconnecting = true
-                    socket.disconnect()
-                  
-                socket: socket
-            }
+            disconnect: () ->
+                disconnecting = true
+                socket.disconnect()
+              
+            socket: socket
+        }
 
 class DevSocket extends SocketClient
     constructor: ($rootScope, $location) ->
