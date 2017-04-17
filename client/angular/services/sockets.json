@@ -1,0 +1,5 @@
+{
+    "DEV_PORT": 8081,
+    "NODE_HOST": "node.presidents.ws",
+    "NODE_PORT": 80
+}

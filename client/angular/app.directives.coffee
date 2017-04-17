@@ -1,73 +1,35 @@
-# Mobil event to implement...
-# endTypes = 'touchend touchcancel mouseup mouseleave'
-# moveTypes = 'touchmove mousemove'
-# startTypes = 'touchstart mousedown'
+# Extends ui-sref directive for firefox support
+# Based on work of https://github.com/homerjam/angular-ui-sref-fastclick
 
 angular.module('webapp')
-  .directive 'draggable', ->
-    (scope, element) ->
-      # this gives us the native JS object
-      el = element[0]
-      
-      el.draggable = true
+    .directive 'uiSref', ($document) ->
+        restrict: 'A'
+        priority: 999
+        link: ($scope, $element, $attrs) ->
+            trackTouch, touchTarget, touchStartX, touchStartY, lastClickTime, boundary = 10, tapDelay = 200
+            touchMove = (e) ->
+                if (Math.abs(e.targetTouches[0].pageX - touchStartX) > boundary) or (Math.abs(e.targetTouches[0].pageY - touchStartY) > boundary)
+                    trackTouch = false
+            $document.on 'touchMove', touchMove
+            $element.on '$destroy', ->
+                $document.off "touchmove", touchMove
+            $element.bind 'touchstart', (e) ->
+                if e.targetTouches.length > 1
+                    return
+                touchTarget = e.target
+                touchStartX = e.targetTouches[0].pageX
+                touchStartY = e.targetTouches[0].pageY
+                trackTouch = true
 
-      el.addEventListener 'dragstart', ((e) ->
-        e.dataTransfer.effectAllowed = 'move'
-        e.dataTransfer.setData 'Text', @id
-        # e.dataTransfer.setData 'Text', "#{@id} #{@offsetLeft} #{@offsetTop}"
-        @classList.add 'drag'
-        return false
-      )
-      el.addEventListener 'dragend', ((e) ->
-        @classList.remove 'drag'
-        return false
-      )
-
-  .directive 'droppable', ->
-    scope:
-      drop: '&'
-      bin: '='
-    
-    link: (scope, element) ->
-      # again we need the native object
-      el = element[0]
-      
-      el.addEventListener 'dragover', ((e) ->
-        e.dataTransfer.dropEffect = 'move'
-        # allows us to drop
-        if e.preventDefault
-          e.preventDefault()
-        @classList.add 'over'
-        return false
-      )
-      
-      el.addEventListener 'dragenter', ((e) ->
-        @classList.add 'over'
-        return false
-      )
-      
-      el.addEventListener 'dragleave', ((e) ->
-        @classList.remove 'over'
-        return false
-      )
-      
-      el.addEventListener 'drop', ((e) ->
-        # Stops some browsers from redirecting.
-        if e.stopPropagation
-          e.stopPropagation()
-        
-        @classList.remove 'over'
-        binId = @id
-        item = document.getElementById(e.dataTransfer.getData('Text'))
-        console.log item
-        @appendChild item
-        # call the passed drop function
-        scope.$apply (scope) ->
-          fn = scope.drop()
-          unless typeof fn is 'undefined'
-            fn item.id, binId
-          return
-        return false
-      )
-
-  
+                if (e.timeStamp - lastClickTime) < tapDelay
+                    e.preventDefault()
+            $element.bing 'touchend', (e) ->
+                unless trackTouch
+                    return false
+                if e.target isnt touchTarget
+                    return false
+                if (Math.abs(e.changedTouches[0].pageX - touchStartX) > boundary) or (Math.abs(e.changedTouches[0].pageY - touchStartY) > boundary)
+                    return false
+                lastClickTime = e.timeStamp
+                $element.triggerHandler 'click'
+                e.preventDefault()
