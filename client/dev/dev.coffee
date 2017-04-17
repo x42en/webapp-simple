@@ -16,7 +16,8 @@ class DevCtrl
     view = undefined
     
     constructor: ($scope, @devSocket, @$timeout, _) ->
-        console.log "[+] Dev controller loaded !"
+        console.info "..:: Dev controller started ::.."
+        console.info "-> Remove it on prod by setting '\"PRODUCTION\": true' in your app.config.json file and restart gulp ..."
         @authentified = false
         @controller = false
 
