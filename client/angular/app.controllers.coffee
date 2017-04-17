@@ -1,5 +1,5 @@
-# <%Start controllers%>
 require '../dev/dev'
+# <%Start controllers%>
 require '../menu/menu'
 require '../login/login'
 require '../home/home'
