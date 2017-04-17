@@ -48,39 +48,72 @@ html,body
 
 
     // colors
-    .dark-gray,.dark-grey color: $dark-grey
-    .gray,.grey color: $gray
-    .black color: $black
-    .red color: $red
-    .orange color: $orange
-    .yellow color: $yellow
-    .olive color: $olive
-    .green color: $green
-    .teal color: $teal
-    .blue color: $blue
-    .violet color: $violet
-    .purple color: $purple
-    .pink color: $pink
-    .brown color: $brown
-    .white color: $white
+    .dark-gray
+    .dark-grey
+        color: $dark-grey
+    .gray
+    .grey
+        color: $gray
+    .black
+        color: $black
+    .red
+        color: $red
+    .orange
+        color: $orange
+    .yellow
+        color: $yellow
+    .olive
+        color: $olive
+    .green
+        color: $green
+    .teal
+        color: $teal
+    .blue
+        color: $blue
+    .violet
+        color: $violet
+    .purple
+        color: $purple
+    .pink
+        color: $pink
+    .brown
+        color: $brown
+    .white
+        color: $white
 
     button.button
         @include button($blue)
 
-        &.dark-grey,&.dark-gray @include button($dark-gray)
-        &.gray,&.grey @include button($gray)
-        &.black @include button($black)
-        &.red @include button($red)
-        &.orange @include button($orange, $black)
-        &.yellow @include button($yellow, $black)
-        &.olive @include button($olive)
-        &.green @include button($green)
-        &.teal @include button($teal)
-        &.blue @include button($blue)
-        &.violet @include button($violet)
-        &.purple @include button($purple)
-        &.pink @include button($pink, $black)
-        &.brown @include button($brown)
+        &.dark-grey
+        &.dark-gray
+            @include button($dark-gray)
+        &.gray
+        &.grey
+            @include button($gray)
+        &.black
+            @include button($black)
+        &.red
+            @include button($red)
+        &.orange
+            @include button($orange, $black)
+        &.yellow
+            @include button($yellow, $black)
+        &.olive
+            @include button($olive)
+        &.green
+            @include button($green)
+        &.teal
+            @include button($teal)
+        &.blue
+            @include button($blue)
+        &.violet
+            @include button($violet)
+        &.purple
+            @include button($purple)
+        &.pink
+            @include button($pink, $black)
+        &.brown
+            @include button($brown)
 
     input
         @include border-radius($border-radius)
@@ -100,8 +133,10 @@ html,body
         margin-right: auto
 
     button, input, select
-        &.left float: left
-        &.right float: right
+        &.left
+            float: left
+        &.right
+            float: right
 
     .justify
         text-align: justify
