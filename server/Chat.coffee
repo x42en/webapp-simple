@@ -2,7 +2,7 @@ module.exports = class Chat
     constructor: () ->
         @names = []
 
-    auth: (name, socket) ->
+    auth: (socket,name) ->
         unless /^[a-z0-9_]+$/.test name
             socket.emit 'err', 'Invalid username.'
             return
@@ -19,13 +19,13 @@ module.exports = class Chat
     _isAuth: (name) ->
         return (name in @names)
 
-    infos: (name, socket) ->
+    infos: (socket,name) ->
         if @_isAuth(name)
             socket.emit 'users', @names
         else
             socket.emit 'err', 'You are not authenticated !'
 
-    msg: (infos, socket) ->
+    msg: (socket,infos) ->
         console.log "[+] #{infos.author} user send -> #{infos.msg}"
         if @_isAuth(infos.author)
             
@@ -33,7 +33,7 @@ module.exports = class Chat
         else
             socket.emit 'err', 'You are not authenticated !'
 
-    leave: (name, socket) ->
+    leave: (socket,name) ->
         if name in @names
             console.log "[+] #{name} user leave the chat room !"
             # Remove this user
