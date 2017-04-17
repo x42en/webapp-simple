@@ -1,5 +1,4 @@
 // mixins
-
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
      -moz-border-radius: $radius;
@@ -13,7 +12,7 @@
 }
 
 @mixin button($color: $blue,$font-color: #FFF) {
-  @pointer();
+  @include pointer();
   display: inline-block;
   min-height: $base-spacing;
   outline: 0;
