@@ -6,7 +6,8 @@ angular.module('webapp')
         restrict: 'A'
         priority: 999
         link: ($scope, $element, $attrs) ->
-            trackTouch, touchTarget, touchStartX, touchStartY, lastClickTime, boundary = 10, tapDelay = 200
+            boundary = 10
+            tapDelay = 200
             touchMove = (e) ->
                 if (Math.abs(e.targetTouches[0].pageX - touchStartX) > boundary) or (Math.abs(e.targetTouches[0].pageY - touchStartY) > boundary)
                     trackTouch = false
