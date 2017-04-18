@@ -24,7 +24,7 @@ angular.module('webapp')
 
                 if (e.timeStamp - lastClickTime) < tapDelay
                     e.preventDefault()
-            $element.bing 'touchend', (e) ->
+            $element.bind 'touchend', (e) ->
                 unless trackTouch
                     return false
                 if e.target isnt touchTarget

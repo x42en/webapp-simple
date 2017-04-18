@@ -1,5 +1,5 @@
-io     = require 'socket.io-client'
-CONFIG = require './sockets.conf'
+io      = require 'socket.io-client'
+SOCKETS = require './sockets.json'
 
 class SocketClient
     constructor: ($rootScope, host='localhost', port=8000, service='/',ssl=false) ->
@@ -34,11 +34,16 @@ class SocketClient
 
 class DevSocket extends SocketClient
     constructor: ($rootScope, $location) ->
-        location = $location.protocol() + "://" + $location.host()
-        return super($rootScope, host=location, port=CONFIG.DEV_PORT)
+        location = $location.protocol() + "://" + $location. host()
+        return super($rootScope, host=location, port=SOCKETS.DEV_PORT)
 
 class ChatSocket extends SocketClient
-    constructor: ($rootScope) ->
-        return super($rootScope, host=CONFIG.NODE_HOST, port=CONFIG.NODE_PORT, service='/chat')
+    constructor: ($rootScope) -> 
+        return super($rootScope, host=SOCKETS.NODE_HOST, port=SOCKETS.NODE_PORT, service='/chat')
 
 # <%End sockets definition%>
+
+angular.module('webapp')
+    .service 'devSocket', DevSocket
+    .service 'chatSocket', ChatSocket
+    # <%End socket registration%>

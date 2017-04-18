@@ -1,10 +1,3 @@
-require './services/sockets'
+# Angular services
 require './services/chatService'
 # <%End service requires%>
-
-angular.module('webapp')
-    .service 'devSocket', DevSocket
-    .service 'chatSocket', ChatSocket
-    .service 'chatService', ChatService
-    # <%End service registration%>
-

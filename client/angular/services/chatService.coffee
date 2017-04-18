@@ -26,3 +26,6 @@ class ChatService
         @username = ''
         @users = []
         @messages = []
+
+
+angular.module('webapp').service 'chatService', ChatService
