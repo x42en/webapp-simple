@@ -1,5 +1,5 @@
 {
-    "client": {
+    "npm": {
         "angular": "^1.6.2",
         "angular-animate": "^1.6.2",
         "angular-dnd-module": "^0.1.24",
@@ -8,6 +8,7 @@
         "angular-ui-router": "^0.4.2",
         "socket.io-client": "^1.4.8"
     },
+    "bower": {},
     "server": {
         "ioserver": "^0.2.0",
         "mongo-sync": "^2.0.1"
