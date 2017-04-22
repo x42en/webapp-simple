@@ -6,6 +6,7 @@ angular.module('webapp')
         restrict: 'A'
         priority: 999
         link: ($scope, $element, $attrs) ->
+            lastClickTime = trackTouch = touchTarget = touchStartX = touchStartY = undefined
             boundary = 10
             tapDelay = 200
             touchMove = (e) ->
