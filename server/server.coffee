@@ -11,5 +11,5 @@ app.addService
 
 # <%End services%>
 
-console.log '#[+] App started :)'
 app.start()
+console.log '#[+] App started :)'

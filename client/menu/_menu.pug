@@ -9,8 +9,8 @@
                 | App
             .col-2
             .col-2
-            .col-2
-            a.entry(ng-show="menu.chatService.username" ng-click="menu.logout()")
+            .col-2(ng-hide="menu.chatService.username")
+            a.col-2.entry(ng-show="menu.chatService.username" ng-click="menu.logout()")
                 i.fa.fa-power-off.red
                 | Logout
             a.col-2.entry(ui-sref='about' ui-sref-active="active")

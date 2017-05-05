@@ -11,7 +11,11 @@ class ChatCtrl
             console.error "[!] #{@message}"
 
     # Send a message
-    send: () ->
+    send: ->
+        unless @msg
+            @message = 'Please write something ;)'
+            console.error "[!] #{@message}"
+            return
         # Build object
         infos = {}
         infos.author = @name

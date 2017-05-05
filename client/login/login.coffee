@@ -25,7 +25,7 @@ class LoginCtrl
             return 'fa-warning'
 
     # Try to authenticate
-    auth: () ->
+    auth: ->
         @chatSocket.emit 'auth', @username
 
 angular.module('webapp').controller 'LoginCtrl', LoginCtrl
