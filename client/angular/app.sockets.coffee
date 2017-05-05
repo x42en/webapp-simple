@@ -9,7 +9,7 @@ class SocketClient
             else
                 scope.$apply(fn)
 
-        socket = io.connect "#{host}:#{port}#{service}", { transports: ['websocket'], reconnectionDelay: 2000, forceNew: true, secure: ssl }
+        socket = io.connect "#{host}:#{port}#{service}", { transports: ['xhr-polling'], reconnectionDelay: 2000, forceNew: true, secure: ssl }
         return {
             on: (eventName, callback) ->
                 socket.on eventName, ->
