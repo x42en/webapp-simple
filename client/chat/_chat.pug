@@ -18,6 +18,6 @@
         .col-7.center
             textarea(name="input-msg" ng-model="chat.msg" ng-keyup="$event.keyCode == 13 && chat.send()" placeholder="Type your message here..." autofocus)
         .col-2
-            button.button.teal(name='send' ng-click="chat.send()")
+            button.button(name='send' ng-click="chat.send()")
                 i.fa.fa-envelope-o
                 | Send
