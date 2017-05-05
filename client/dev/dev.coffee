@@ -14,6 +14,7 @@ class DevCtrl
     slug = undefined
     state = undefined
     view = undefined
+    module = undefined
     
     constructor: ($scope, @devSocket, @$timeout, _) ->
         console.info "..:: Dev controller started ::.."
@@ -58,7 +59,7 @@ class DevCtrl
         return (@infos in ['page', 'view', 'component'])
 
     setType: (@infos) ->
-        @controller = if @infos in ['controller','page','view','component'] then true else false
+        @controller = if @infos not @controller and @infos in ['controller','page','view','component'] then true else false
 
     setName: () ->
         @slug = "/#{@name.toLowerCase()}"

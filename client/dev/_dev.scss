@@ -20,75 +20,85 @@
             margin-right: $base-spacing/2;
         }
         .title {
-            display: inline-block;
             margin-bottom: $base-spacing/2;
             i.fa{
                 font-size: $base-spacing*2;
                 padding: $base-spacing/2;
             }
             span {
+                font-size: $base-spacing*2;
                 color: $white;
                 margin-right: $base-spacing;
             }
         }
-        .config {
-            margin-left: $base-spacing/2;
-            margin-top: $base-spacing;
-            .section {
-                color: $white;
-                border-bottom: 1px solid $white;
-                padding-bottom: $base-spacing/4;
-                width: 70%;
+        .dev-menu{
+            display: inline-block;
+            .config {
+                display: inline-block;
                 margin-left: $base-spacing/2;
-                font-size: 0.9em;
-            }
-            ul.tools {
-                margin: $base-spacing;
-                margin-top: $base-spacing/2;
-                li {
-                    @include pointer();
+                .section {
                     color: $white;
-                    font-weight: $font-weight-light;
-                    font-size: 0.8em;
-                    padding: $base-spacing/8;
-                    position: relative;
-                    i.fa{
-                        width: $base-spacing;
-                    }
-                    &:hover{
-                        background-color: $dark-gray;
+                    border-bottom: 1px solid $white;
+                    padding-bottom: $base-spacing/4;
+                    width: 70%;
+                    margin-left: $base-spacing/2;
+                    font-size: 0.9em;
+                }
+                ul.tools {
+                    margin: $base-spacing;
+                    margin-top: $base-spacing/2;
+                    li {
+                        @include pointer();
+                        color: $white;
+                        font-weight: $font-weight-light;
+                        font-size: 0.8em;
+                        padding: $base-spacing/8;
+                        position: relative;
+                        i.fa{
+                            width: $base-spacing;
+                        }
+                        &:hover{
+                            background-color: $dark-gray;
+                        }
                     }
                 }
             }
-            .details {
-                margin-top: $base-spacing*2;
-                margin-bottom: $base-spacing*3;
-                font-size: 0.8em;
-                h4, h5, label { color: $white; }
-                h4, h5 {
-                    margin-bottom: $base-spacing/2;
-                    padding-bottom: $base-spacing/2;
-                    border-bottom: 1px solid $white;
-                }
-                h4, h5 {
-                    font-size: 1em;
-                    margin-top: $base-spacing;
-                }
-                select { 
-                    height: 1.4em;
-                    font-size: 1em;
-                    color: $black;
-                }
-                label { display: inline-block; }
-                button {
-                    @include button();
-                    margin-top: $base-spacing;
-                }
-                .field { margin-top: $base-spacing/2; }
-                input[type="checkbox"] {
-                    display: inline-block;
-                    margin-right: $base-spacing/2;
-                }
+
+        }
+        .details {
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-size: 0.8em;
+            padding: 0 1rem 1rem;
+            vertical-align: top;
+            background: $blue;
+            @include border-radius($border-radius);
+            box-shadow: inset 10px 10px 37px -4px rgba(0,0,0,0.31);
+            h4, h5, label { color: $white; }
+            h4, h5 {
+                margin-bottom: $base-spacing/2;
+                padding-bottom: $base-spacing/2;
+                border-bottom: 1px solid $white;
+            }
+            h4, h5 {
+                font-size: 1em;
+                margin-top: $base-spacing;
+            }
+            select { 
+                height: 2em;
+                font-size: 1.2em;
+                color: $black;
+                width: 100%;
+            }
+            label { display: inline-block; }
+            button {
+                @include button($black);
+                margin-top: $base-spacing;
+            }
+            .field { margin-top: $base-spacing/2; }
+            input[type="checkbox"] {
+                display: inline-block;
+                margin-right: $base-spacing/2;
             }
         }
     }
