@@ -1,7 +1,8 @@
 IOServer = require 'ioserver'
+CONFIG   = require './sockets.json'
 
 app = new IOServer
-        port: 8000
+        port: CONFIG.NODE_PORT
         host: 'localhost'
 
 app.addService
