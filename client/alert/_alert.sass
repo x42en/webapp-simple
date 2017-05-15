@@ -1,0 +1,22 @@
+.notifications
+    position: absolute
+    bottom: $base-spacing
+    width: 40%
+    min-width: 300px
+    margin: auto
+    left: 0
+    right: 0
+
+    .notification
+        width: auto
+        margin: auto
+        font-size: 1.1em
+
+        .alert-success
+            @include notification($green)
+        .alert-info
+            @include notification($blue)
+        .alert-warning
+            @include notification($yellow)
+        .alert-danger
+            @include notification($red)

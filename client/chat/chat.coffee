@@ -1,21 +1,19 @@
 class ChatCtrl
-    constructor: (@chatSocket, @chatService) ->
+    constructor: (@alertService, @chatSocket, @chatService) ->
         console.log '[+] Chat controller loaded'
         @name = @chatService.username
-        @message = ''
         @msg = ''
 
         # Receive new message
-        @chatSocket.on 'err', (message) =>
-            @message = message
-            console.error "[!] #{@message}"
+        @chatSocket.on 'err', (msg) =>
+            @alertService.error msg
 
     # Send a message
     send: ->
         unless @msg
-            @message = 'Please write something ;)'
-            console.error "[!] #{@message}"
-            return
+            @alertService.error 'Please write something ;)'
+            return false
+
         # Build object
         infos = {}
         infos.author = @name

@@ -1,0 +1,7 @@
+.notifications(ng-controller="AlertCtrl as alert")
+    .notification(ng-show="alert.getMessage()")
+        .alert.alert-dismissible(ng-class="alert.getType()" role="alert")
+            i.fa(ng-class="alert.getIcon()")
+            | {{alert.getMessage()}}
+            button.close(type="button" data-dismiss="alert" aria-label="Close" ng-click="alert.hide()")
+                span(aria-hidden="true") &times;

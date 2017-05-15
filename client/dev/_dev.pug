@@ -77,8 +77,3 @@
             button.button.right(name="create" ng-click="dev.create()")
                 i.fa.fa-save
                 | Create
-
-    .dev-message(ng-show="dev.message")
-        .msgbox(ng-class="dev.type")
-            i.fa(ng-class="dev.getIcon()")
-            | Dev {{dev.type}}: {{dev.message}}

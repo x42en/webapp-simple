@@ -67,6 +67,9 @@ html(lang=`${APP_LANG}`, ng-app='webapp')
             //- Footer template
             include footer/_footer
 
+            //- Alert view
+            include alert/_alert
+
         //- Multiple scripts inclusion
         each script_url in APP_SCRIPTS
             +scripts(`/scripts/${script_url}`)

@@ -18,8 +18,3 @@
             button.button(name='login' ng-click="login.auth()")
                 i.fa.fa-sign-in
                 | Enter
-
-    .login-message(ng-show="login.message")
-        .msgbox(ng-class="login.type")
-            i.fa(ng-class="login.getIcon()")
-            | {{login.message}}

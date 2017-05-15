@@ -4,8 +4,6 @@ class DevCtrl
     controllers = []
     views = {}
     show = false
-    message = ''
-    type = 'error'
     infos = undefined
     name = undefined
     cname = undefined
@@ -16,7 +14,7 @@ class DevCtrl
     view = undefined
     module = undefined
     
-    constructor: ($scope, @devSocket, @$timeout, _) ->
+    constructor: ($scope, @devSocket, @alertService, @$timeout, _) ->
         console.info "..:: Dev controller started ::.."
         console.info "-> Remove it on prod by setting '\"PRODUCTION\": true' in your app.config.json file and restart gulp ..."
         @authentified = false
@@ -32,34 +30,30 @@ class DevCtrl
             @states = infos.states
             @controllers = infos.controllers
             @views = infos.views
+
         @devSocket.on 'refresh', =>
             location.reload()
-        @devSocket.on 'success', (@message) =>
-            @type = 'success'
-            console.log "[+] Dev: #{@message}"
-            # Only show success messages for 3sec
-            @$timeout( () =>
-                @message = ''
-            , 3000)
-        @devSocket.on 'notification', (@message) =>
-            @type = 'notification'
-            console.info "[+] Dev notification: #{@message}"
-        @devSocket.on 'warning', (@message) =>
-            @type = 'warning'
-            console.warn "[!] Dev warning: #{@message}"
-        @devSocket.on 'err', (@message) =>
-            @type = 'error'
-            console.error "[!] Dev error: #{@message}"
+        
+        @devSocket.on 'success', (msg) =>
+            @alertService.success "Dev: #{msg}"
+        
+        @devSocket.on 'notification', (msg) =>
+            @alertService.info "Dev notification: #{msg}"
+        
+        @devSocket.on 'warning', (msg) =>
+            @alertService.warning "Dev warning: #{msg}"
+        
+        @devSocket.on 'err', (msg) =>
+            @alertService.error "Dev error: #{msg}"
+        
         @devSocket.on 'disconnect', =>
-            @message = 'server disconnected...'
-            @type = 'error'
-            console.log "[!] #{@message}"
+            @alertService.error 'server disconnected...'
 
     showController: () ->
         return (@infos in ['page', 'view', 'component'])
 
     setType: (@infos) ->
-        @controller = if @infos not @controller and @infos in ['controller','page','view','component'] then true else false
+        @controller = if (@infos isnt @controller) and (@infos in ['controller','page','view','component']) then true else false
 
     setName: () ->
         @slug = "/#{@name.toLowerCase()}"
@@ -68,17 +62,6 @@ class DevCtrl
         else
             @cname = @name.toUpperCase() + 'Ctrl'
         @calias = @name.toLowerCase()
-
-    getMessage: () -> @message
-    getIcon: ->
-        if @type is 'success'
-            return 'fa-check-circle'
-        else if @type is 'notification'
-            return 'fa-info-circle'
-        else if @type is 'warning'
-            return 'fa-exclamation-circle'
-        else
-            return 'fa-warning'
 
     create: ->
         unless @name
@@ -128,9 +111,6 @@ class DevCtrl
             options.slug = if @slug then @slug else @name
 
         @devSocket.emit @infos, options
-        
-    success: (elt, name) ->
-        @type = 'success'
-        @message = "#{elt} '#{name}' created..."
+    
 
 angular.module('webapp').controller 'DevCtrl', DevCtrl
