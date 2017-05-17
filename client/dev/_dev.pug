@@ -25,6 +25,12 @@
                     li(ng-click="dev.setType('page')")
                         i.fa.fa-question-circle.blue.right(tooltips tooltip-template="A page is<br/>- a template (JADE+SASS)<br/>- its corresponding controller<br/>- a state in ui-router." tooltip-side="right")
                         | page
+                    li(ng-click="dev.setType('socket')")
+                        i.fa.fa-question-circle.blue.right(tooltips tooltip-template="Let you add a channel (socket.io) connection in angular." tooltip-side="right")
+                        | socket
+                    li(ng-click="dev.setType('client-service')")
+                        i.fa.fa-question-circle.blue.right(tooltips tooltip-template="A client side service let you pass data between controllers." tooltip-side="right")
+                        | service
                     li(ng-click="dev.setType('client-module')")
                         i.fa.fa-question-circle.blue.right(tooltips tooltip-template="Let you add a bower or npm module (client-side)." tooltip-side="right")
                         | module
@@ -32,8 +38,8 @@
                     i.fa.fa-database
                     | Server
                 ul.tools
-                    li(ng-click="dev.setType('service')")
-                        i.fa.fa-question-circle.blue.right(tooltips tooltip-template="A page is<br/>- a service is operating on server side, and can be interacted with socket.io channels." tooltip-side="right")
+                    li(ng-click="dev.setType('server-service')")
+                        i.fa.fa-question-circle.blue.right(tooltips tooltip-template="A service is operating on server side, and can be interacted with socket.io channels." tooltip-side="right")
                         | service
                     li(ng-click="dev.setType('server-module')")
                         i.fa.fa-question-circle.blue.right(tooltips tooltip-template="Let you add a npm module (server-side)." tooltip-side="right")
@@ -49,7 +55,7 @@
             .field
                 input(type="text" name="name" placeholder="{{dev.infos}} name" ng-change="dev.setName()" ng-model="dev.name")
             .field
-                input(type="text" name="slug" placeholder="Url format" ng-show="dev.infos == 'page'" ng-model="dev.slug")
+                input(type="text" name="slug" placeholder="Url format" ng-show="dev.infos == 'page' || dev.infos == 'socket'" ng-model="dev.slug")
             
             h5
                 i.fa.fa-sliders
@@ -65,7 +71,7 @@
             .field
                 input(type="text" name="calias" placeholder="Controller alias" ng-show="dev.controller || dev.infos == 'controller'" ng-model="dev.calias")
             .field
-                input(type="text" name="salias" placeholder="Service alias" ng-show="dev.infos == 'service'" ng-model="dev.salias")
+                input(type="text" name="salias" placeholder="Service alias" ng-show="dev.infos == 'server-service'" ng-model="dev.salias")
             .field(ng-show="dev.infos == 'client-module'")
                 select(name="module-type" ng-model="dev.module")
                     option(value="" disabled selected) Set a module type

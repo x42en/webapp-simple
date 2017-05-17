@@ -7,19 +7,9 @@ require 'angular-tooltips'
 require 'angular-dnd-module'
 # <%End requires %>
 
-underscore = angular.module('underscore', [])
-underscore.service '_', [ '$window', ($window) -> 
-    _ = 
-        getInstance: -> $window._
-    _.getInstance()
-
-    return _
-]
-
 angular
     .module('webapp', [
         # <%Start modules %>
-        'underscore',
         'ui.router',
         'ngTouch',
         'ngAnimate',

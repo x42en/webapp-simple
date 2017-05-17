@@ -1,5 +1,5 @@
 class AlertService
-    constructor: (_) ->
+    constructor: ->
         @type = undefined
         @message = undefined
         @ellapsed = 3000
@@ -37,7 +37,5 @@ class AlertService
             return 'fa-exclamation-circle'
         else
             return 'fa-warning'   
-
-
 
 angular.module('webapp').service 'alertService', AlertService

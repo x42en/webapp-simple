@@ -40,7 +40,6 @@ class DevSocket extends SocketClient
 class ChatSocket extends SocketClient
     constructor: ($rootScope) -> 
         return super($rootScope, host=SOCKETS.NODE_HOST, port=SOCKETS.NODE_PORT, service='/chat')
-
 # <%End sockets definition%>
 
 angular.module('webapp')

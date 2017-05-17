@@ -14,7 +14,7 @@ class DevCtrl
     view = undefined
     module = undefined
     
-    constructor: ($scope, @devSocket, @alertService, @$timeout, _) ->
+    constructor: ($scope, @devSocket, @alertService, @$timeout) ->
         console.info "..:: Dev controller started ::.."
         console.info "-> Remove it on prod by setting '\"PRODUCTION\": true' in your app.config.json file and restart gulp ..."
         @authentified = false
@@ -35,7 +35,7 @@ class DevCtrl
             location.reload()
         
         @devSocket.on 'success', (msg) =>
-            @alertService.success "Dev: #{msg}"
+            @alertService.success "Dev success: #{msg}"
         
         @devSocket.on 'notification', (msg) =>
             @alertService.info "Dev notification: #{msg}"
@@ -96,7 +96,7 @@ class DevCtrl
         options = {}
         options.name = @name[0].toUpperCase() + @name.substring(1).toLowerCase()
         # If we build server side
-        if @infos is 'service'
+        if @infos in ['server-service', 'server-module']
             options.alias = if @salias then @salias else options.name.toLowerCase()
         # On client side
         else
