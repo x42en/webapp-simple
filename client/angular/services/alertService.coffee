@@ -26,16 +26,29 @@ class AlertService
             @message = undefined
             @type = undefined
         , @ellapsed)
+    setTimeout: (@ellapsed) ->
     getMessage: -> @message
     getType: -> @type
     getIcon: ->
-        if @type is 'alert-success'
-            return 'fa-check-circle'
-        else if @type is 'alert-info'
-            return 'fa-info-circle'
-        else if @type is 'alert-warning'
-            return 'fa-exclamation-circle'
-        else
-            return 'fa-warning'   
+        unless @type
+            return false
+        switch @type
+            when 'alert-success'
+                icon = 'fa-check-circle'
+                break
+            when 'alert-info'
+                icon = 'fa-info-circle'
+                break
+            when 'alert-warning'
+                icon = 'fa-exclamation-triangle'
+                break
+            when 'alert-danger'
+                icon = 'fa-times-circle'
+                break
+            else
+                console.log "Unsupported type: #{@type}"
+                icon = 'fa-question-circle'
+                break
+        return icon  
 
 angular.module('webapp').service 'alertService', AlertService
