@@ -2,6 +2,18 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic)
 
 // colors
+$color_jungle_mist_approx: #abced4
+$color_gallery_approx: #eee
+$color_pink_swan_approx: #bbb
+$color_blue_marguerite_approx: slateblue
+$color_shiraz_approx: #b03
+$color_amaranth_approx: #d35
+$color_pippin_approx: mistyrose
+$color_seagull_approx: #87ceeb
+$color_seagull_50_approx: rgba(135, 206, 235,0.5)
+$color_cerulean_50_approx: rgba(0, 191, 255,0.5)
+$color_cerulean_approx:  deepskyblue
+$color_woodsmoke_approx: #111
 $black: #1B1C1D
 $dark-grey: #333447
 $dark-gray: #333447 // for the Americans
@@ -23,12 +35,16 @@ $brown: #A5673F
 $white: #FFFFFF
 
 // fonts
-$font-family: 'Lato', Helvetica, sans-serif
+$font_0: "Indie Flower"
+$font_1: cursive
+$font_2: "Permanent Marker"
+$font_3: "Fredoka One"
+$base-font: 'Comfortaa', 'Lato', Helvetica, sans-serif
+$font-family: 'Comfortaa', 'Lato', Helvetica, sans-serif
 $font-weight-light: 300
 $font-weight-regular: 400
 $font-weight-heavy: 700
 $font-height: 1.5
-$base-font-color: $dark-grey
 
 // various
 $border-radius: 0.2rem
@@ -40,3 +56,16 @@ $gutter: 4%
 $breakpoint-small: 33.75em // 540px
 $breakpoint-med: 45em // 720px
 $breakpoint-large: 60em // 960px
+$mobile: new-breakpoint(min-width 321px 4) !global
+$phone_max: new-breakpoint(max-width 1024px 4) !global
+$tablet: new-breakpoint(min-width 1025px 4) !global
+$desktop: new-breakpoint(min-width 1281px 4) !global
+
+$expander-arrow-width: 5px
+$expander-toggle-size: 1em
+$expander-toggle-arrow-size: $expander-toggle-size
+$expander-toggle-margin: 1em
+
+// global
+$inverted-font-color: $white
+$base-font-color: $dark-gray

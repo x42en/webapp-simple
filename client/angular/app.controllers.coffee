@@ -1,5 +1,6 @@
 require '../dev/dev'
 # <%Start controllers%>
+require '../alert/alert'
 require '../menu/menu'
 require '../login/login'
 require '../home/home'

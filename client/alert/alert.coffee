@@ -1,5 +1,5 @@
 class AlertCtrl
-    constructor: (_, @alertService) ->
+    constructor: (@alertService) ->
     getMessage: -> @alertService.getMessage()
     getType: -> @alertService.getType()
     getIcon: -> @alertService.getIcon()

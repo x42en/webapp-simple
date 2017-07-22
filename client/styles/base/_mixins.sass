@@ -1,17 +1,14 @@
 // mixins
-@mixin border-radius($radius)
-    -webkit-border-radius: $radius
-    -moz-border-radius: $radius
-    -ms-border-radius: $radius
+=border-radius($radius: $border-radius)
     border-radius: $radius
 
 
-@mixin pointer()
+=pointer()
     cursor: hand
     cursor: pointer
 
 
-@mixin button($color: $blue,$font-color: #FFF)
+=button($color: $blue,$font-color: #FFF)
     @include pointer()
     display: inline-block
     min-height: $base-spacing
@@ -34,16 +31,30 @@
     i.fa
         color: $font-color
 
-@mixin absolute-center()
+=absolute-center()
     position: absolute
     right: 0
     left: 0
     margin-left: auto
     margin-right: auto
 
-@mixin notification($color:$red)
+=notification($color:$red)
     background-color: lighten($color, 30)
     color: darken($color,20)
     border: 1px darken($color,20) solid
     i.fa
         color: darken($color,20)
+
+=message-box($color: $white, $font: $black)
+    border-radius: $border-radius/2
+    background: $color
+    color: $font
+
+=linear-gradient($start:$black, $end:$dark-gray)
+    background-color: rgba($end, 1)
+    background: -webkit-linear-gradient(top, rgba($start, 1) 0%, rgba($end, 1) 100%)
+    background: linear-gradient(to bottom, rgba($start, 1) 0%, rgba($end, 1) 100%)
+
+=black_head()
+    +linear-gradient()
+    color: lighten($inverted-font-color, 20)
